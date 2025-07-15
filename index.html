@@ -2,56 +2,113 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Weather Advisory</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>🌾 Smart Agri-Weather Advisory</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <style>
+    body {
+      padding-top: 3rem;
+      background: linear-gradient(to right, #e3f2fd, #f1f8e9);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .header {
+      font-size: 2.8rem;
+      font-weight: bold;
+      color: #2e7d32;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+    .card {
+      border-radius: 1rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .footer {
+      font-size: 0.9rem;
+      color: #777;
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .btn-print {
+      background-color: #ffcc80;
+      border: none;
+      color: #5d4037;
+    }
+  </style>
 </head>
-<body class="bg-light">
-  <div class="container py-5">
-    <h1 class="text-center mb-4">🌦️ Weather Advisory</h1>
-    <form id="weatherForm" class="d-flex justify-content-center gap-2 mb-4">
-      <input type="text" class="form-control w-50" id="cityInput" placeholder="Enter city name" required />
-      <button type="submit" class="btn btn-primary">Get Advisory</button>
-    </form>
-    <div id="result" class="card shadow-sm p-4 d-none">
-      <h4 id="cityName"></h4>
-      <p><strong>Temperature:</strong> <span id="temp"></span>°C</p>
-      <p><strong>Humidity:</strong> <span id="humidity"></span>%</p>
-      <p><strong>Condition:</strong> <span id="condition"></span></p>
-      <p class="alert alert-info"><strong>Advisory:</strong> <span id="advisory"></span></p>
+<body>
+  <div class="container text-center">
+    <h1 class="header mb-4">🌾 Smart Agri-Weather Advisory System</h1>
+
+    <div class="row justify-content-center">
+      <div class="col-md-7">
+        <div class="card p-4">
+          <div class="mb-3">
+            <input id="cityInput" type="text" class="form-control" placeholder="Enter city name">
+          </div>
+          <div class="mb-3">
+            <select id="cropSelect" class="form-select">
+              <option value="">Select Crop (optional)</option>
+              <option value="cotton">Cotton</option>
+              <option value="paddy">Paddy</option>
+              <option value="tomato">Tomato</option>
+            </select>
+          </div>
+          <div class="d-grid gap-2">
+            <button class="btn btn-success" onclick="getAdvisory()">Get Advisory</button>
+            <button class="btn btn-secondary" onclick="resetForm()">Reset</button>
+            <button class="btn btn-print" onclick="window.print()">🖨️ Print Advisory</button>
+          </div>
+          <div id="result" class="alert alert-info d-none mt-4"></div>
+          <div id="error" class="alert alert-danger d-none mt-2"></div>
+          <div class="mt-3">
+            <textarea class="form-control" rows="3" placeholder="Leave your feedback here..."></textarea>
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="error" class="alert alert-danger d-none mt-4"></div>
+
+    <div class="footer mt-4">
+      Developed by <strong>Chinmay R M</strong>, <strong>Appaji B M</strong>, <strong>Sameer P</strong>
+    </div>
   </div>
 
   <script>
-    const form = document.getElementById("weatherForm");
-    const result = document.getElementById("result");
-    const errorBox = document.getElementById("error");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
+    async function getAdvisory() {
       const city = document.getElementById("cityInput").value.trim();
+      const crop = document.getElementById("cropSelect").value;
+      const resBox = document.getElementById("result");
+      const errorBox = document.getElementById("error");
+
+      if (!city) return alert("Please enter a city name.");
+
+      const url = `https://weather-advisory-backend.onrender.com/weather?city=${encodeURIComponent(city)}&crop=${encodeURIComponent(crop)}`;
+
+      resBox.classList.add("d-none");
+      errorBox.classList.add("d-none");
 
       try {
-        const res = await fetch(`https://weather-advisory-backend.onrender.com/weather?city=${city}`);
-        const data = await res.json();
-
+        const data = await fetch(url).then(res => res.json());
         if (data.error) throw new Error(data.error);
 
-        document.getElementById("cityName").textContent = data.city;
-        document.getElementById("temp").textContent = data.temperature;
-        document.getElementById("humidity").textContent = data.humidity;
-        document.getElementById("condition").textContent = data.condition;
-        document.getElementById("advisory").textContent = data.advisory;
-
-        result.classList.remove("d-none");
-        errorBox.classList.add("d-none");
+        resBox.innerHTML = `
+          🌍 <strong>City:</strong> ${data.city}<br/>
+          🌱 <strong>Crop:</strong> ${data.crop || "Not specified"}<br/>
+          🌡️ <strong>Temperature:</strong> ${data.temperature}°C<br/>
+          💧 <strong>Humidity:</strong> ${data.humidity}%<br/>
+          ☁️ <strong>Condition:</strong> ${data.condition}<br/><br/>
+          📣 <strong>Advisory:</strong><br/> ${data.advisory}
+        `;
+        resBox.classList.remove("d-none");
       } catch (err) {
-        errorBox.textContent = `❌ ${err.message}`;
+        errorBox.textContent = "❌ " + err.message;
         errorBox.classList.remove("d-none");
-        result.classList.add("d-none");
       }
-    });
+    }
+
+    function resetForm() {
+      document.getElementById("cityInput").value = "";
+      document.getElementById("cropSelect").selectedIndex = 0;
+      document.getElementById("result").classList.add("d-none");
+      document.getElementById("error").classList.add("d-none");
+    }
   </script>
 </body>
 </html>
