@@ -5,69 +5,506 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Agri AI - Weather Advisory</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    body {
-      background: linear-gradient(to right, #e0f7fa, #fce4ec);
-      font-family: 'Segoe UI', sans-serif;
+    :root {
+      --primary-color: #2e7d32;
+      --secondary-color: #81c784;
+      --accent-color: #ff8f00;
+      --dark-green: #1b5e20;
     }
+    
+    body {
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4f5e4 100%);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      min-height: 100vh;
+    }
+    
+    .navbar-brand {
+      font-weight: 700;
+      color: var(--primary-color) !important;
+    }
+    
     .card {
       animation: fadeIn 0.4s ease-in-out;
+      border: none;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1) !important;
+    }
+    
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(0.98); }
       to { opacity: 1; transform: scale(1); }
     }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--dark-green);
+      border-color: var(--dark-green);
+    }
+    
+    .btn-outline-primary {
+      color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .btn-outline-primary:hover {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+    }
+    
+    .weather-icon {
+      font-size: 2rem;
+      margin-right: 10px;
+    }
+    
+    .advisory-card {
+      border-left: 5px solid var(--accent-color);
+    }
+    
+    .feature-icon {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1rem;
+    }
+    
+    footer {
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+    
+    .crop-btn {
+      transition: all 0.3s ease;
+    }
+    
+    .crop-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Founders Section Styles */
+    .founders-section {
+      background: linear-gradient(135deg, #f8fff8 0%, #e8f5e9 100%);
+      border-radius: 15px;
+      padding: 2rem;
+      margin: 3rem 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .founder-card {
+      transition: all 0.3s ease;
+      border: none;
+      text-align: center;
+      padding: 1.5rem;
+    }
+    
+    .founder-card:hover {
+      transform: translateY(-10px);
+    }
+    
+    .founder-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin: 0 auto 1rem;
+      transition: all 0.3s ease;
+    }
+    
+    .founder-card:hover .founder-img {
+      transform: scale(1.05);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+    
+    .founder-name {
+      font-weight: 700;
+      color: var(--dark-green);
+      margin: 0.5rem 0;
+    }
+    
+    .founder-title {
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+    
+    .section-title {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    
+    .section-title:after {
+      content: '';
+      position: absolute;
+      width: 50%;
+      height: 3px;
+      background: var(--accent-color);
+      bottom: -10px;
+      left: 25%;
+      border-radius: 3px;
+    }
+    
+    @media (max-width: 768px) {
+      .display-4 {
+        font-size: 2rem;
+      }
+      
+      .founder-img {
+        width: 120px;
+        height: 120px;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <i class="fas fa-leaf me-2"></i>Agri AI
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="#"><i class="fas fa-home me-1"></i> Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#features"><i class="fas fa-star me-1"></i> Features</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#founders"><i class="fas fa-users me-1"></i> Founders</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about"><i class="fas fa-info-circle me-1"></i> About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <div class="container py-5">
-    <h1 class="text-center mb-4 fw-bold text-primary-emphasis">🌾 Agri AI | Weather Advisory</h1>
+    <!-- Hero Section -->
+    <div class="row align-items-center mb-5">
+      <div class="col-lg-6">
+        <h1 class="display-4 fw-bold mb-4 text-success">Smart Weather Advisory for Farmers</h1>
+        <p class="lead mb-4">Get AI-powered weather insights and crop-specific recommendations to maximize your harvest potential.</p>
+        <div class="d-flex gap-2">
+          <button class="btn btn-primary btn-lg px-4" onclick="scrollToForm()">
+            <i class="fas fa-cloud-sun-rain me-2"></i>Get Advisory
+          </button>
+          <button class="btn btn-outline-primary btn-lg px-4" data-bs-toggle="modal" data-bs-target="#infoModal">
+            <i class="fas fa-question-circle me-2"></i>How It Works
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-6 d-none d-lg-block">
+        <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+             alt="Farm field" class="img-fluid rounded shadow">
+      </div>
+    </div>
     
-    <form id="weatherForm" class="row g-2 justify-content-center align-items-center mb-4">
-      <div class="col-md-4">
-        <input type="text" class="form-control" id="cityInput" placeholder="Enter city name" required />
-      </div>
-      <div class="col-md-3">
-        <select class="form-select" id="cropSelect" required>
-          <option value="">Choose a crop</option>
-          <option value="tomato">Tomato</option>
-          <option value="chilli">Chilli</option>
-          <option value="onion">Onion</option>
-          <option value="sugarcane">Sugarcane</option>
-          <option value="peanuts">Peanuts</option>
-          <option value="corn">Corn</option>
-          <option value="rice">Rice</option>
-          <option value="wheat">Wheat</option>
-        </select>
-      </div>
-      <div class="col-md-auto">
-        <button type="submit" class="btn btn-success px-4">Get Advisory</button>
-      </div>
-    </form>
-
-    <div class="text-center my-3 d-none" id="loading">
-      <div class="spinner-border text-success" role="status">
-        <span class="visually-hidden">Loading...</span>
+    <!-- Popular Crops -->
+    <div class="mb-5">
+      <h3 class="text-center mb-4 fw-bold section-title">Popular Crops</h3>
+      <div class="row g-3 justify-content-center">
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('tomato')">
+            <i class="fas fa-apple-alt me-2"></i>Tomato
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('chilli')">
+            <i class="fas fa-pepper-hot me-2"></i>Chilli
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('onion')">
+            <i class="fas fa-onion me-2"></i>Onion
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('rice')">
+            <i class="fas fa-seedling me-2"></i>Rice
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('wheat')">
+            <i class="fas fa-bread-slice me-2"></i>Wheat
+          </button>
+        </div>
       </div>
     </div>
 
-    <div id="result" class="card shadow p-4 d-none">
-      <h4 id="cityName" class="fw-bold"></h4>
-      <p><strong>🌡️ Temperature:</strong> <span id="temp"></span>°C</p>
-      <p><strong>💧 Humidity:</strong> <span id="humidity"></span>%</p>
-      <p><strong>🌤️ Condition:</strong> <span id="condition"></span></p>
-      <p class="alert alert-info mt-4"><strong>🌱 Advisory:</strong> <span id="advisory"></span></p>
+    <!-- Weather Form -->
+    <div class="card bg-white mb-5 p-4 shadow-sm" id="weatherFormSection">
+      <h3 class="text-center mb-4 fw-bold text-success section-title"><i class="fas fa-cloud-sun me-2"></i>Weather Advisory Form</h3>
+      
+      <form id="weatherForm" class="row g-3 justify-content-center align-items-center">
+        <div class="col-md-5">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-city"></i></span>
+            <input type="text" class="form-control" id="cityInput" placeholder="Enter city name" required />
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="input-group">
+            <span class="input-group-text"><i class="fas fa-seedling"></i></span>
+            <select class="form-select" id="cropSelect" required>
+              <option value="">Choose a crop</option>
+              <option value="tomato">Tomato</option>
+              <option value="chilli">Chilli</option>
+              <option value="onion">Onion</option>
+              <option value="sugarcane">Sugarcane</option>
+              <option value="peanuts">Peanuts</option>
+              <option value="corn">Corn</option>
+              <option value="rice">Rice</option>
+              <option value="wheat">Wheat</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-3 col-lg-2">
+          <button type="submit" class="btn btn-success w-100">
+            <i class="fas fa-search me-2"></i>Get Advisory
+          </button>
+        </div>
+      </form>
+
+      <div class="text-center my-3 d-none" id="loading">
+        <div class="spinner-border text-success" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+        <p class="mt-2">Analyzing weather data for your crop...</p>
+      </div>
+
+      <div id="result" class="card shadow p-4 d-none mt-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h4 id="cityName" class="fw-bold mb-0"></h4>
+          <button class="btn btn-sm btn-outline-secondary" onclick="copyAdvisory()">
+            <i class="fas fa-copy me-1"></i>Copy
+          </button>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <p><i class="fas fa-temperature-high weather-icon text-danger"></i> <strong>Temperature:</strong> <span id="temp"></span>°C</p>
+            <p><i class="fas fa-tint weather-icon text-info"></i> <strong>Humidity:</strong> <span id="humidity"></span>%</p>
+          </div>
+          <div class="col-md-6">
+            <p><i class="fas fa-cloud weather-icon text-primary"></i> <strong>Condition:</strong> <span id="condition"></span></p>
+            <p><i class="fas fa-wind weather-icon text-warning"></i> <strong>Wind Speed:</strong> <span id="wind"></span> km/h</p>
+          </div>
+        </div>
+        <div class="alert advisory-card mt-4">
+          <h5 class="alert-heading"><i class="fas fa-lightbulb me-2"></i>AI Advisory</h5>
+          <hr>
+          <p id="advisory" class="mb-0"></p>
+        </div>
+        <div class="d-flex justify-content-end mt-3">
+          <button class="btn btn-sm btn-outline-primary me-2" onclick="shareAdvisory()">
+            <i class="fas fa-share-alt me-1"></i>Share
+          </button>
+          <button class="btn btn-sm btn-outline-success" onclick="saveAdvisory()">
+            <i class="fas fa-save me-1"></i>Save
+          </button>
+        </div>
+      </div>
+
+      <div id="error" class="alert alert-danger d-none mt-4 text-center"></div>
     </div>
 
-    <div id="error" class="alert alert-danger d-none mt-4 text-center"></div>
+    <!-- Features Section -->
+    <div class="row text-center mb-5" id="features">
+      <h2 class="mb-4 fw-bold text-success section-title"><i class="fas fa-star me-2"></i>Key Features</h2>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 p-4">
+          <i class="fas fa-robot feature-icon"></i>
+          <h4>AI-Powered</h4>
+          <p>Advanced algorithms analyze weather patterns and crop requirements to give precise recommendations.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 p-4">
+          <i class="fas fa-mobile-alt feature-icon"></i>
+          <h4>Mobile Friendly</h4>
+          <p>Access advisory services from any device, anywhere, even in remote farm locations.</p>
+        </div>
+      </div>
+      <div class="col-md-4 mb-4">
+        <div class="card h-100 p-4">
+          <i class="fas fa-crop-alt feature-icon"></i>
+          <h4>Crop-Specific</h4>
+          <p>Tailored advice for different crops based on their unique growth requirements.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Founders Section -->
+    <div class="founders-section" id="founders">
+      <h2 class="text-center mb-5 fw-bold text-success section-title"><i class="fas fa-users me-2"></i>Our Visionary Founders</h2>
+      <div class="row justify-content-center">
+        <div class="col-md-4 mb-4">
+          <div class="card founder-card h-100">
+            <img src="https://drive.google.com/uc?export=view&id=1Nbw6uhgA-MQ1ZxFncQj_Wxw9rsSWafSr" alt="Chinmay R M" class="founder-img">
+            <h3 class="founder-name">Chinmay R M</h3>
+            <p class="founder-title">Chief Technology Officer</p>
+            <p>AI & Machine Learning Specialist with a passion for agricultural innovation.</p>
+            <div class="social-links mt-2">
+              <a href="#" class="text-decoration-none mx-1"><i class="fab fa-linkedin text-primary"></i></a>
+              <a href="#" class="text-decoration-none mx-1"><i class="fab fa-twitter text-info"></i></a>
+              <a href="#" class="text-decoration-none mx-1"><i class="fas fa-envelope text-danger"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card founder-card h-100">
+            <img src="https://drive.google.com/uc?export=view&id=1Eo4l9ds6swa5HtUMDAWmBECzUf3bwjyi" alt="Appaji B M" class="founder-img">
+            <h3 class="founder-name">Appaji B M</h3>
+            <p class="founder-title">Chief Executive Officer</p>
+            <p>Agricultural expert with 15+ years of experience in sustainable farming practices.</p>
+            <div class="social-links mt-2">
+              <a href="#" class="text-decoration-none mx-1"><i class="fab fa-linkedin text-primary"></i></a>
+              <a href="#" class="text-decoration-none mx-1"><i class="fab fa-twitter text-info"></i></a>
+              <a href="#" class="text-decoration-none mx-1"><i class="fas fa-envelope text-danger"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card founder-card h-100">
+            <img src="https://drive.google.com/uc?export=view&id=1n3zIaeqAg9HZEMXdEze7zZ3LdrmsAnxJ" alt="Sameer P" class="founder-img">
+            <h3 class="founder-name">Sameer P</h3>
+            <p class="founder-title">Chief Operations Officer</p>
+            <p>Business strategist focused on bringing technology to rural farming communities.</p>
+            <div class="social-links mt-2">
+              <a href="#" class="text-decoration-none mx-1"><i class="fab fa-linkedin text-primary"></i></a>
+              <a href="#" class="text-decoration-none mx-1"><i class="fab fa-twitter text-info"></i></a>
+              <a href="#" class="text-decoration-none mx-1"><i class="fas fa-envelope text-danger"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <div class="card bg-light p-4 mb-4" id="about">
+      <h2 class="mb-3 fw-bold text-success section-title"><i class="fas fa-info-circle me-2"></i>About Agri AI</h2>
+      <p>Agri AI Weather Advisory is a smart farming tool designed to help farmers make informed decisions based on current weather conditions and crop requirements. Our system combines real-time weather data with agricultural expertise to provide actionable recommendations.</p>
+      <p>This service is particularly valuable for small and medium-scale farmers who need accurate, localized advice to optimize their farming practices and maximize yields.</p>
+    </div>
   </div>
 
+  <!-- Footer -->
+  <footer class="py-4 mt-auto">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 text-center text-md-start">
+          <p class="mb-0">&copy; 2025 Agri AI Weather Advisory. All rights reserved.</p>
+        </div>
+        <div class="col-md-6 text-center text-md-end">
+          <a href="#" class="text-decoration-none me-3"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="text-decoration-none me-3"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="text-decoration-none me-3"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="text-decoration-none"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- How It Works Modal -->
+  <div class="modal fade" id="infoModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title"><i class="fas fa-question-circle me-2"></i>How It Works</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ol>
+            <li class="mb-2">Enter your city name to get local weather data</li>
+            <li class="mb-2">Select your crop from the dropdown menu</li>
+            <li class="mb-2">Click "Get Advisory" to receive recommendations</li>
+            <li>Our AI analyzes weather conditions and provides crop-specific advice</li>
+          </ol>
+          <div class="alert alert-info mt-3">
+            <i class="fas fa-lightbulb me-2"></i>For best results, check the advisory regularly as weather conditions change.
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-bs-dismiss="modal">Got It!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   <script>
     const form = document.getElementById("weatherForm");
     const result = document.getElementById("result");
     const errorBox = document.getElementById("error");
     const loading = document.getElementById("loading");
 
+    // Scroll to form function
+    function scrollToForm() {
+      document.getElementById('weatherFormSection').scrollIntoView({
+        behavior: 'smooth'
+      });
+    }
+
+    // Select crop from popular crops buttons
+    function selectCrop(crop) {
+      document.getElementById('cropSelect').value = crop;
+      scrollToForm();
+    }
+
+    // Copy advisory to clipboard
+    function copyAdvisory() {
+      const advisoryText = document.getElementById("advisory").textContent;
+      navigator.clipboard.writeText(advisoryText)
+        .then(() => {
+          alert('Advisory copied to clipboard!');
+        })
+        .catch(err => {
+          console.error('Failed to copy: ', err);
+        });
+    }
+
+    // Share advisory
+    function shareAdvisory() {
+      const city = document.getElementById("cityName").textContent;
+      const advisory = document.getElementById("advisory").textContent;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: `Weather Advisory for ${city}`,
+          text: advisory,
+          url: window.location.href
+        })
+        .catch(err => {
+          console.error('Error sharing:', err);
+        });
+      } else {
+        alert('Web Share API not supported in your browser. Copy the advisory instead.');
+      }
+    }
+
+    // Save advisory (simulated - in a real app this would save to a database)
+    function saveAdvisory() {
+      alert('Advisory saved to your account! (This is a demo)');
+    }
+
+    // Form submission
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
       const city = document.getElementById("cityInput").value.trim();
@@ -90,13 +527,25 @@
 
         if (data.error) throw new Error(data.error);
 
-        document.getElementById("cityName").textContent = `${data.city} (${data.crop})`;
+        document.getElementById("cityName").textContent = `${data.city} (${data.crop.charAt(0).toUpperCase() + data.crop.slice(1)})`;
         document.getElementById("temp").textContent = data.temperature;
         document.getElementById("humidity").textContent = data.humidity;
         document.getElementById("condition").textContent = data.condition;
         document.getElementById("advisory").textContent = data.advisory;
+        
+        // Add wind speed if available in response
+        if (data.wind) {
+          document.getElementById("wind").textContent = data.wind;
+        } else {
+          document.getElementById("wind").textContent = "N/A";
+        }
 
         result.classList.remove("d-none");
+        
+        // Scroll to result
+        setTimeout(() => {
+          result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 300);
       } catch (err) {
         errorBox.textContent = `❌ ${err.message}`;
         errorBox.classList.remove("d-none");
