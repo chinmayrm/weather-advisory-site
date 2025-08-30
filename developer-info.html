@@ -112,6 +112,22 @@
       background: #232526;
       color: #ffb300;
     }
+    /* Remove all underlines from links and buttons */
+    a, a:hover, a:focus, .btn, .btn:focus, .btn:hover {
+      text-decoration: none !important;
+      box-shadow: none !important;
+    }
+    /* Remove colored underlines from section headings */
+    .section-title:after,
+    h4.section-title:after,
+    h3.section-title:after {
+      display: none !important;
+    }
+    /* Remove any border-bottom or border styles from headings */
+    .section-title, h4.section-title, h3.section-title {
+      border-bottom: none !important;
+      box-shadow: none !important;
+    }
   </style>
 </head>
 <body>
