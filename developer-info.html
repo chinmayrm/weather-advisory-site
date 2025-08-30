@@ -14,71 +14,44 @@
 </head>
 <body>
   <div class="container my-5">
+    <div class="mb-4">
+      <a href="index.html" class="btn btn-outline-success"><i class="fas fa-arrow-left me-2"></i>Back to Home</a>
+    </div>
     <div class="card bg-white shadow-sm p-4">
       <h3 class="fw-bold text-success mb-3"><i class="fas fa-code me-2"></i>Developer Model Info</h3>
-      <ul class="list-group list-group-flush mb-3">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <span><strong>Model Accuracy</strong></span>
-          <span class="badge bg-success fs-6">1.00</span>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <span><strong>ROC AUC Score (OvR)</strong></span>
-          <span class="badge bg-primary fs-6">1.00</span>
-        </li>
-      </ul>
-      <div class="row mb-3">
-        <div class="row mb-3">
-          <div class="col-md-6 mb-3 mb-md-0 text-center">
-            <h5 class="fw-bold">Confusion Matrix</h5>
-            <img src="confusion_matrix.png" alt="Confusion Matrix" class="img-fluid rounded shadow border" style="max-height:320px;">
-          </div>
-          <div class="col-md-6 text-center">
-            <h5 class="fw-bold">ROC Curve</h5>
-            <img src="roc_curve.png" alt="ROC Curve" class="img-fluid rounded shadow border" style="max-height:320px;">
-            <div class="text-muted small mt-2">(Add <code>roc_curve.png</code> to project root to display ROC curve.)</div>
-          </div>
+      <section class="mb-4">
+        <h4 class="section-title mb-2">Why KNN Retrieval vs. Random Forest Classifier?</h4>
+        <p>
+          <strong>KNN (K-Nearest Neighbors) retrieval</strong> is used in this project to provide instant, crop-specific advisories by finding the most similar historical sample in the dataset. Unlike a <strong>Random Forest Classifier</strong> (or other predictive models), KNN does not require training or generalization—it simply matches the user's input to the closest real-world example. This approach is more scalable for large, diverse advisory datasets and avoids memory issues that can occur with thousands of unique advisory classes. It also ensures that every recommendation is based on real, previously seen data, making the system robust and transparent.
+        </p>
+      </section>
+      <section class="mb-4">
+        <h4 class="section-title mb-2">Dataset & Retrieval Info</h4>
+        <ul class="mb-3">
+          <li><strong>Total advisory samples:</strong> 10,000</li>
+          <li><strong>Unique advisory classes:</strong> 9,996</li>
+          <li><strong>Features used for retrieval:</strong> Crop, Season, Soil Type, Temperature, Humidity, Rainfall</li>
+        </ul>
+        <div class="mb-3">
+          <h5 class="fw-bold">Top 20 Advisory Class Distribution</h5>
+          <img src="advisory_class_distribution.png" alt="Top 20 Advisory Class Distribution" class="img-fluid rounded shadow border" style="max-height:500px;">
         </div>
-      </div>
-      <div class="alert alert-info mb-3">
-        <i class="fas fa-info-circle me-2"></i>
-        These metrics are based on the latest model training run (see <code>train_model.py</code>). For more details, check the project repository or contact the development team.
-      </div>
-      <div class="table-responsive mb-2">
-        <table class="table table-bordered table-striped align-middle mb-0">
-          <thead class="table-success">
-            <tr>
-              <th>Class</th>
-              <th>Precision</th>
-              <th>Recall</th>
-              <th>F1-score</th>
-              <th>Support</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Avoid overwatering</td><td>1.00</td><td>1.00</td><td>1.00</td><td>198</td></tr>
-            <tr><td>Fertilize today</td><td>1.00</td><td>1.00</td><td>1.00</td><td>129</td></tr>
-            <tr><td>Harvest soon</td><td>1.00</td><td>0.99</td><td>1.00</td><td>181</td></tr>
-            <tr><td>Irrigate regularly</td><td>1.00</td><td>0.97</td><td>0.99</td><td>36</td></tr>
-            <tr><td>Monitor for pests</td><td>1.00</td><td>1.00</td><td>1.00</td><td>127</td></tr>
-            <tr><td>No action needed</td><td>1.00</td><td>1.00</td><td>1.00</td><td>256</td></tr>
-            <tr><td>Spray pesticide</td><td>1.00</td><td>0.99</td><td>1.00</td><td>189</td></tr>
-            <tr><td>Water lightly</td><td>1.00</td><td>1.00</td><td>1.00</td><td>884</td></tr>
-          </tbody>
-          <tfoot class="table-light">
-            <tr><th>accuracy</th><td colspan="3" class="text-center">1.00</td><td>2000</td></tr>
-            <tr><th>macro avg</th><td>1.00</td><td>1.00</td><td>1.00</td><td>2000</td></tr>
-            <tr><th>weighted avg</th><td>1.00</td><td>1.00</td><td>1.00</td><td>2000</td></tr>
-          </tfoot>
-        </table>
-      </div>
+      </section>
+      <section class="mb-4">
+        <h4 class="section-title mb-2">How Retrieval Works</h4>
+        <p>
+          When a user requests an advisory, the system encodes their input and finds the most similar record in the dataset using KNN. The advisory from that record is returned, ensuring recommendations are always based on real, historical data.
+        </p>
+      </section>
+      <section class="mb-4">
+        <h4 class="section-title mb-2">Newsletter & Updates</h4>
+        <p>
+          Stay up to date with the latest improvements and research in Agri AI Weather Advisory. <br>
+          <a href="https://www.linkedin.com/newsletters/farmsetu-7366350245141639168/" class="btn btn-outline-success mt-2" target="_blank"><i class="fas fa-envelope me-2"></i>Subscribe to our Newsletter</a>
+        </p>
+      </section>
       <div class="d-flex justify-content-between align-items-center mt-4 flex-wrap">
         <div class="text-muted small">&copy; 2025 Agri AI Weather Advisory. All rights reserved.</div>
-        <div>
-          <a href="#" class="text-decoration-none me-3"><i class="fab fa-facebook"></i></a>
-          <a href="#" class="text-decoration-none me-3"><i class="fab fa-twitter"></i></a>
-          <a href="#" class="text-decoration-none me-3"><i class="fab fa-instagram"></i></a>
-          <a href="#" class="text-decoration-none"><i class="fab fa-linkedin"></i></a>
-        </div>
       </div>
     </div>
   </div>
