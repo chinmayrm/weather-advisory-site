@@ -141,12 +141,16 @@
       border: none;
       text-align: center;
       padding: 1.5rem;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     
     .founder-card:hover {
       transform: translateY(-10px);
     }
-    
+
     .founder-img {
       width: 150px;
       height: 150px;
@@ -157,38 +161,49 @@
       margin: 0 auto 1rem;
       transition: all 0.3s ease;
     }
-    
+
     .founder-card:hover .founder-img {
       transform: scale(1.05);
       box-shadow: 0 8px 25px rgba(0,0,0,0.15);
     }
-    
+
     .founder-name {
       font-weight: 700;
       color: var(--dark-green);
       margin: 0.5rem 0;
     }
-    
+
     .founder-title {
       color: var(--accent-color);
       font-weight: 600;
+    }
+    .social-links {
+      min-height: 40px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 10px;
+      margin-top: auto;
     }
     
     .section-title {
       position: relative;
       display: inline-block;
       margin-bottom: 2rem;
+      padding-bottom: 8px;
+    }
     }
     
     .section-title:after {
-      content: '';
-      position: absolute;
-      width: 50%;
-      height: 3px;
-      background: var(--accent-color);
-      bottom: -10px;
-      left: 25%;
-      border-radius: 3px;
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 2px;
+  z-index: 1;
     }
     
     @media (max-width: 768px) {
@@ -547,15 +562,19 @@
   <h2 class="text-center mb-5 fw-bold text-success section-title">
     <i class="fas fa-users me-2"></i>Our Visionary Founders
   </h2>
-  <div class="row justify-content-center">
+  <div class="row justify-content-center align-items-stretch">
 
     <!-- Founder 1 -->
     <div class="col-md-4 mb-4">
-      <div class="card founder-card h-100">
+  <div class="card founder-card h-100 d-flex flex-column">
         <img src="https://i.postimg.cc/Z5zJnHPQ/pp.jpg" alt="Chinmay R M" class="founder-img">
         <h3 class="founder-name">Chinmay R M</h3>
         <p class="founder-title">Chief Technology Officer</p>
-        <p>AI & Machine Learning Specialist with a passion for agricultural innovation.</p>
+        <ul class="list-unstyled small mb-3">
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-microchip me-2 text-success mt-1"></i><span>Deep Learning & Computer Vision Expert</span></li>
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-seedling me-2 text-success mt-1"></i><span>AgriTech Innovator & Contributor</span></li>
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-graduation-cap me-2 text-success mt-1"></i><span>Speaker at AI in Agriculture Events</span></li>
+        </ul>
         <div class="social-links mt-3 text-center">
           <a href="https://www.linkedin.com/in/chinmay-rm/" class="text-decoration-none mx-2" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin fa-lg text-primary"></i>
@@ -572,12 +591,16 @@
 
     <!-- Founder 2 -->
     <div class="col-md-4 mb-4">
-      <div class="card founder-card h-100">
+  <div class="card founder-card h-100 d-flex flex-column">
         <img src="https://i.postimg.cc/pyNqQpq2/sameer.jpg" alt="Sameer P" class="founder-img">
         <h3 class="founder-name">Sameer P</h3>
         <p class="founder-title">Chief Executive Officer</p>
-        <p>Business strategist focused on bringing technology to rural farming communities.</p>
-        <div class="social-links mt-3 text-center">
+        <ul class="list-unstyled small mb-3">
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-lightbulb me-2 text-success mt-1"></i><span>Expert in Rural Business Development</span></li>
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-network-wired me-2 text-success mt-1"></i><span>Leader in AgriTech Partnerships</span></li>
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-users-cog me-2 text-success mt-1"></i><span>Mentor for Young Entrepreneurs</span></li>
+        </ul>
+  <div class="social-links mt-3 text-center mt-auto">
           <a href="https://www.linkedin.com/in/sameer-pandu/" class="text-decoration-none mx-2" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin fa-lg text-primary"></i>
           </a>
@@ -590,12 +613,16 @@
 
     <!-- Founder 3 -->
     <div class="col-md-4 mb-4">
-      <div class="card founder-card h-100">
+  <div class="card founder-card h-100 d-flex flex-column">
         <img src="https://i.postimg.cc/mrbRNr5N/appaji.jpg" alt="Appaji B M" class="founder-img">
         <h3 class="founder-name">Appaji B M</h3>
         <p class="founder-title">Chief Financial Officer</p>
-        <p>Agricultural expert with 15+ years of experience in sustainable farming practices.</p>
-        <div class="social-links mt-3 text-center">
+        <ul class="list-unstyled small mb-3">
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-leaf me-2 text-success mt-1"></i><span>Pioneer in Organic & Sustainable Farming</span></li>
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-hand-holding-water me-2 text-success mt-1"></i><span>Advisor for Water Conservation Projects</span></li>
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-award me-2 text-success mt-1"></i><span>Long-term vision of blending eco-living</span></li>
+        </ul>
+  <div class="social-links mt-3 text-center mt-auto">
           <a href="https://www.linkedin.com/in/appumaranur/" class="text-decoration-none mx-2" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin fa-lg text-primary"></i>
           </a>
@@ -746,7 +773,6 @@
   </script>
 </body>
 </html>
-
 
 
 
