@@ -7,6 +7,42 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* Stack steps vertically and reduce font size in How It Works modal */
+    .modal-howitworks .howitworks-step-row {
+      flex-direction: column !important;
+    }
+    .modal-howitworks .howitworks-step {
+      font-size: 0.98rem;
+      margin-bottom: 0.7rem;
+    }
+    /* Custom style for How It Works modal */
+    .modal-howitworks .modal-content {
+      border-radius: 2rem !important;
+      box-shadow: 0 8px 32px rgba(44, 62, 80, 0.15);
+      border: none;
+      padding: 0.5rem 0.5rem 0.5rem 0.5rem;
+      background: #f8fff8;
+    }
+    .modal-howitworks .modal-header {
+      border-top-left-radius: 2rem !important;
+      border-top-right-radius: 2rem !important;
+      background: #2e7d32;
+      color: #fff;
+    }
+    .modal-howitworks .modal-footer {
+      border-bottom-left-radius: 2rem !important;
+      border-bottom-right-radius: 2rem !important;
+      background: #f8fff8;
+    }
+    .modal-howitworks .badge {
+      font-size: 1.3rem;
+      background: #e4f5e4;
+      color: #2e7d32;
+      box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+    }
+    .modal-howitworks .alert-info {
+      border-radius: 1rem;
+    }
     :root {
       --primary-color: #2e7d32;
       --secondary-color: #81c784;
@@ -233,7 +269,7 @@
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('onion')">
-            <i class="fas fa-onion me-2"></i>Onion
+            <i class="fas fa-circle me-2"></i>Onion
           </button>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
@@ -253,7 +289,7 @@
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('maize')">
-            <i class="fas fa-corn me-2"></i>Maize
+            <i class="fas fa-icicles me-2"></i>Maize
           </button>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
@@ -283,17 +319,17 @@
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('millet')">
-            <i class="fas fa-bowl-rice me-2"></i>Millet
+            <i class="fas fa-bread-slice me-2"></i>Millet
           </button>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('groundnut')">
-            <i class="fas fa-peanut me-2"></i>Groundnut
+            <i class="fas fa-seedling me-2"></i>Groundnut
           </button>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
           <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('potato')">
-            <i class="fas fa-potato me-2"></i>Potato
+            <i class="fas fa-egg me-2"></i>Potato
           </button>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
@@ -305,21 +341,57 @@
     </div>
 
     <!-- How It Works Modal -->
-    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+    <div class="modal fade modal-howitworks" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="infoModalLabel"><i class="fas fa-question-circle me-2"></i>How It Works</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <h5 class="modal-title" id="infoModalLabel"><i class="fas fa-question-circle me-2"></i>How to Use This Site</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-            <ol>
-              <li><strong>Select your crop</strong> from the popular crops or dropdown.</li>
-              <li><strong>Enter your city</strong> and choose the season and soil type.</li>
-              <li>Click <strong>Get Advisory</strong> to receive AI-powered, crop-specific weather recommendations.</li>
-              <li>Review, copy, share, or save the advisory for your records.</li>
-            </ol>
-            <p class="mt-3"><i class="fas fa-lightbulb text-warning me-2"></i>Our system uses real-time weather and crop data to give you actionable, point-wise advice for your farm.</p>
+            <div class="container-fluid">
+              <div class="row text-center mb-3">
+                <div class="col-12">
+                  <h5 class="fw-bold mb-3">Get your weather-based crop advisory in 4 easy steps:</h5>
+                </div>
+              </div>
+              <div class="d-flex flex-column howitworks-step-row">
+                <div class="d-flex align-items-start howitworks-step">
+                  <span class="badge rounded-pill me-3 p-3"><i class="fas fa-seedling fa-lg"></i></span>
+                  <div>
+                    <strong>Step 1:</strong> <span>Select your crop</span> from the popular crops or dropdown menu.
+                  </div>
+                </div>
+                <div class="d-flex align-items-start howitworks-step">
+                  <span class="badge rounded-pill me-3 p-3"><i class="fas fa-city fa-lg"></i></span>
+                  <div>
+                    <strong>Step 2:</strong> <span>Enter your city</span> and choose the <span>season</span> and <span>soil type</span>.
+                  </div>
+                </div>
+                <div class="d-flex align-items-start howitworks-step">
+                  <span class="badge rounded-pill me-3 p-3"><i class="fas fa-cloud-sun-rain fa-lg"></i></span>
+                  <div>
+                    <strong>Step 3:</strong> <span>Click <b>Get Advisory</b></span> to receive AI-powered, crop-specific weather recommendations.
+                  </div>
+                </div>
+                <div class="d-flex align-items-start howitworks-step">
+                  <span class="badge rounded-pill me-3 p-3"><i class="fas fa-lightbulb fa-lg"></i></span>
+                  <div>
+                    <strong>Step 4:</strong> <span>Review, copy, share, or save</span> the advisory for your records.
+                  </div>
+                </div>
+              </div>
+              <div class="row mt-4">
+                <div class="col-12">
+                  <div class="alert alert-info d-flex align-items-center" role="alert">
+                    <i class="fas fa-info-circle fa-lg me-2"></i>
+                    <span>
+                      <b>Tip:</b> Our system uses real-time weather and crop data to give you actionable, point-wise advice for your farm. For best results, enter accurate details!
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-success" data-bs-dismiss="modal">Got it!</button>
@@ -471,7 +543,7 @@
       <div class="row justify-content-center">
         <div class="col-md-4 mb-4">
           <div class="card founder-card h-100">
-            <img src="https://i.postimg.cc/J0Q5XPDQ/Untitled-design-2.jpg" alt="Chinmay R M" class="founder-img">
+            <img src="https://i.postimg.cc/Z5zJnHPQ/pp.jpg" alt="Chinmay R M" class="founder-img">
             <h3 class="founder-name">Chinmay R M</h3>
             <p class="founder-title">Chief Technology Officer</p>
             <p>AI & Machine Learning Specialist with a passion for agricultural innovation.</p>
@@ -484,10 +556,10 @@
         </div>
         <div class="col-md-4 mb-4">
           <div class="card founder-card h-100">
-            <img src="https://i.postimg.cc/159HSh27/Untitled-design-3.jpg" alt="Appaji B M" class="founder-img">
-            <h3 class="founder-name">Appaji B M</h3>
-            <p class="founder-title">Chief Executive Officer</p>
-            <p>Agricultural expert with 15+ years of experience in sustainable farming practices.</p>
+            <img src="https://i.postimg.cc/pyNqQpq2/sameer.jpg" alt="Sameer P" class="founder-img">
+            <h3 class="founder-name">Sameer P</h3>
+            <p class="founder-title">Chief Operations Officer</p>
+            <p>Business strategist focused on bringing technology to rural farming communities.</p>
             <div class="social-links mt-2">
               <a href="#" class="text-decoration-none mx-1"><i class="fab fa-linkedin text-primary"></i></a>
               <a href="#" class="text-decoration-none mx-1"><i class="fab fa-twitter text-info"></i></a>
@@ -497,10 +569,10 @@
         </div>
         <div class="col-md-4 mb-4">
           <div class="card founder-card h-100">
-            <img src="https://i.postimg.cc/L8QvvCyC/Untitled-design-1.jpg" alt="Sameer P" class="founder-img">
-            <h3 class="founder-name">Sameer P</h3>
-            <p class="founder-title">Chief Operations Officer</p>
-            <p>Business strategist focused on bringing technology to rural farming communities.</p>
+            <img src="https://i.postimg.cc/mrbRNr5N/appaji.jpg" alt="Appaji B M" class="founder-img">
+            <h3 class="founder-name">Appaji B M</h3>
+            <p class="founder-title">Chief Executive Officer</p>
+            <p>Agricultural expert with 15+ years of experience in sustainable farming practices.</p>
             <div class="social-links mt-2">
               <a href="#" class="text-decoration-none mx-1"><i class="fab fa-linkedin text-primary"></i></a>
               <a href="#" class="text-decoration-none mx-1"><i class="fab fa-twitter text-info"></i></a>
@@ -628,9 +700,11 @@
     </div>
   </footer>
 
+  <!-- Bootstrap JS Bundle (required for modal) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
 
 
   </script>
 </body>
 </html>
-
