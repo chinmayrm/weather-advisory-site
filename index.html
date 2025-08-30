@@ -295,7 +295,36 @@
         }
         url += `&city=${encodeURIComponent(city)}`;
       }
-      // ...existing code for loading, fetch, and displaying result...
+      const loading = document.getElementById("loading");
+      const errorBox = document.getElementById("error");
+      const result = document.getElementById("result");
+      loading.classList.remove("d-none");
+      errorBox.classList.add("d-none");
+      result.classList.add("d-none");
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+        if (data.error) throw new Error(data.error);
+        document.getElementById("cityName").textContent = `${data.city} (${data.crop.charAt(0).toUpperCase() + data.crop.slice(1)})`;
+        document.getElementById("temp").textContent = data.temperature;
+        document.getElementById("humidity").textContent = data.humidity;
+        document.getElementById("condition").textContent = data.condition;
+        document.getElementById("advisory").textContent = data.advisory;
+        if (data.wind) {
+          document.getElementById("wind").textContent = data.wind;
+        } else {
+          document.getElementById("wind").textContent = "N/A";
+        }
+        result.classList.remove("d-none");
+        setTimeout(() => {
+          result.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 300);
+      } catch (err) {
+        errorBox.textContent = `❌ ${err.message}`;
+        errorBox.classList.remove("d-none");
+      } finally {
+        loading.classList.add("d-none");
+      }
     });
   </script>
           </div>
