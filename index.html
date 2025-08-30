@@ -227,8 +227,8 @@
           </button>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
-          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('chilli')">
-            <i class="fas fa-pepper-hot me-2"></i>Chilli
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('chillies')">
+            <i class="fas fa-pepper-hot me-2"></i>Chillies
           </button>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
@@ -237,14 +237,93 @@
           </button>
         </div>
         <div class="col-6 col-md-4 col-lg-2">
-          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('rice')">
-            <i class="fas fa-seedling me-2"></i>Rice
-          </button>
-        </div>
-        <div class="col-6 col-md-4 col-lg-2">
           <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('wheat')">
             <i class="fas fa-bread-slice me-2"></i>Wheat
           </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('cotton')">
+            <i class="fas fa-shirt me-2"></i>Cotton
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('sugarcane')">
+            <i class="fas fa-candy-cane me-2"></i>Sugarcane
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('maize')">
+            <i class="fas fa-corn me-2"></i>Maize
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('soybean')">
+            <i class="fas fa-seedling me-2"></i>Soybean
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('banana')">
+            <i class="fas fa-lemon me-2"></i>Banana
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('tea')">
+            <i class="fas fa-mug-hot me-2"></i>Tea
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('coffee')">
+            <i class="fas fa-coffee me-2"></i>Coffee
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('paddy')">
+            <i class="fas fa-water me-2"></i>Paddy
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('millet')">
+            <i class="fas fa-bowl-rice me-2"></i>Millet
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('groundnut')">
+            <i class="fas fa-peanut me-2"></i>Groundnut
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('potato')">
+            <i class="fas fa-potato me-2"></i>Potato
+          </button>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <button class="btn btn-outline-success w-100 crop-btn" onclick="selectCrop('mustard')">
+            <i class="fas fa-oil-can me-2"></i>Mustard
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works Modal -->
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="infoModalLabel"><i class="fas fa-question-circle me-2"></i>How It Works</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <ol>
+              <li><strong>Select your crop</strong> from the popular crops or dropdown.</li>
+              <li><strong>Enter your city</strong> and choose the season and soil type.</li>
+              <li>Click <strong>Get Advisory</strong> to receive AI-powered, crop-specific weather recommendations.</li>
+              <li>Review, copy, share, or save the advisory for your records.</li>
+            </ol>
+            <p class="mt-3"><i class="fas fa-lightbulb text-warning me-2"></i>Our system uses real-time weather and crop data to give you actionable, point-wise advice for your farm.</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Got it!</button>
+          </div>
         </div>
       </div>
     </div>
@@ -267,13 +346,21 @@
             <select class="form-select" id="cropSelect" required>
               <option value="">Choose a crop</option>
               <option value="tomato">Tomato</option>
-              <option value="chilli">Chilli</option>
+              <option value="chillies">Chillies</option>
               <option value="onion">Onion</option>
-              <option value="sugarcane">Sugarcane</option>
-              <option value="peanuts">Peanuts</option>
-              <option value="corn">Corn</option>
-              <option value="rice">Rice</option>
               <option value="wheat">Wheat</option>
+              <option value="cotton">Cotton</option>
+              <option value="sugarcane">Sugarcane</option>
+              <option value="maize">Maize</option>
+              <option value="soybean">Soybean</option>
+              <option value="banana">Banana</option>
+              <option value="tea">Tea</option>
+              <option value="coffee">Coffee</option>
+              <option value="paddy">Paddy</option>
+              <option value="millet">Millet</option>
+              <option value="groundnut">Groundnut</option>
+              <option value="potato">Potato</option>
+              <option value="mustard">Mustard</option>
             </select>
           </div>
         </div>
@@ -446,8 +533,24 @@
   <!-- Footer -->
   <footer class="py-4 mt-auto">
   <script>
+    // Scroll to the advisory form section
+    function scrollToForm() {
+      const formSection = document.getElementById('weatherFormSection');
+      if (formSection) {
+        formSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // Select crop from popular crops and set dropdown, then scroll to form
+    function selectCrop(cropName) {
+      const cropSelect = document.getElementById('cropSelect');
+      if (cropSelect) {
+        cropSelect.value = cropName;
+      }
+      scrollToForm();
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
-      let userCoords = null;
       // Patch the form submit to use only city (no live location)
       const form = document.getElementById("weatherForm");
       form.addEventListener("submit", async (e) => {
