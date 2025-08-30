@@ -178,12 +178,17 @@
       font-weight: 600;
     }
     .social-links {
-      min-height: 40px;
+      /* generic social links styles, if needed elsewhere */
+    }
+    .founder-social {
       display: flex;
-      align-items: flex-end;
+      flex-direction: row;
       justify-content: center;
-      gap: 10px;
-      margin-top: auto;
+      align-items: center;
+      min-height: 48px;
+      gap: 1.5rem;
+      width: 100%;
+      margin-top: 1.5rem;
     }
     
     .section-title {
@@ -194,18 +199,17 @@
     }
 
     
-    .section-title:after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--accent-color);
-  border-radius: 2px;
-  z-index: 1;
+    /* Remove colored underlines from section headings */
+    .section-title:after,
+    h4.section-title:after,
+    h3.section-title:after {
+      display: none !important;
     }
-    
+    /* Remove any border-bottom or border styles from headings */
+    .section-title, h4.section-title, h3.section-title {
+      border-bottom: none !important;
+      box-shadow: none !important;
+    }
     /* Subtle Animations */
     .card, .feature-icon, .founder-img, .btn, .crop-btn, .navbar, .section-title {
       transition: all 0.3s cubic-bezier(.4,0,.2,1) 0.2s;
@@ -411,15 +415,52 @@
       filter: none !important;
     }
     .footer-icon {
-      color: #2e7d32;
+      color: #1976d2 !important;
       transition: color 0.2s;
     }
     .footer-icon:hover {
-      color: #ffb300;
+      color: #1565c0 !important;
     }
     .dark-mode .footer-icon {
       color: #ffb300 !important;
     }
+    .dark-mode .footer-icon:hover {
+      color: #ffb300 !important;
+    }
+    /* Center-align founder card text and icons */
+    .founder-card {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    .founder-card .founder-name {
+      text-align: center !important;
+      width: 100%;
+      margin-bottom: 0.2em;
+    }
+    .founder-card .founder-title {
+      text-align: center !important;
+      width: 100%;
+      margin-bottom: 1.1em;
+      min-height: 1.7em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .founder-card ul {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      text-align: left;
+      margin: 0 auto 1rem auto;
+      padding: 0;
+      width: 100%;
+      max-width: 95%;
+    }
+  /* .founder-card .social-links now handled by .founder-social for consistency */
   </style>
 </head>
 <body>
@@ -775,18 +816,18 @@
         <h3 class="founder-name">Chinmay R M</h3>
         <p class="founder-title">Chief Technology Officer</p>
         <ul class="list-unstyled small mb-3">
-          <li class="d-flex align-items-start mb-1"><i class="fas fa-microchip me-2 text-success mt-1"></i><span>Deep Learning & Computer Vision Expert</span></li>
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-microchip me-2 text-success mt-1"></i><span>Deep Learning & ML Expert</span></li>
           <li class="d-flex align-items-start mb-1"><i class="fas fa-seedling me-2 text-success mt-1"></i><span>AgriTech Innovator & Contributor</span></li>
           <li class="d-flex align-items-start mb-1"><i class="fas fa-graduation-cap me-2 text-success mt-1"></i><span>Speaker at AI in Agriculture Events</span></li>
         </ul>
-        <div class="social-links mt-3 text-center">
-          <a href="https://www.linkedin.com/in/chinmay-rm/" class="text-decoration-none mx-2" target="_blank" rel="noopener noreferrer">
+        <div class="social-links founder-social">
+          <a href="https://www.linkedin.com/in/chinmay-rm/" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin fa-lg text-primary"></i>
           </a>
-          <a href="https://x.com/chinmay__rm" class="text-decoration-none mx-2" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/chinmay__rm" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-x-twitter fa-lg"></i>
           </a>
-          <a href="https://www.instagram.com/chinmay.mov" class="text-decoration-none mx-2" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/chinmay.mov" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-instagram fa-lg"></i>
           </a>
         </div>
@@ -804,11 +845,11 @@
           <li class="d-flex align-items-start mb-1"><i class="fas fa-network-wired me-2 text-success mt-1"></i><span>Leader in AgriTech Partnerships</span></li>
           <li class="d-flex align-items-start mb-1"><i class="fas fa-users-cog me-2 text-success mt-1"></i><span>Mentor for Young Entrepreneurs</span></li>
         </ul>
-  <div class="social-links mt-3 text-center mt-auto">
-          <a href="https://www.linkedin.com/in/sameer-pandu/" class="text-decoration-none mx-2" target="_blank" rel="noopener noreferrer">
+  <div class="social-links founder-social">
+          <a href="https://www.linkedin.com/in/sameer-pandu/" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin fa-lg text-primary"></i>
           </a>
-          <a href="https://x.com/Panduran6Sameer" class="text-decoration-none mx-2" target="_blank" rel="noopener noreferrer">
+          <a href="https://x.com/Panduran6Sameer" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
             <i class="fa-brands fa-x-twitter fa-lg"></i>
           </a>
         </div>
@@ -822,15 +863,15 @@
         <h3 class="founder-name">Appaji B M</h3>
         <p class="founder-title">Chief Financial Officer</p>
         <ul class="list-unstyled small mb-3">
-          <li class="d-flex align-items-start mb-1"><i class="fas fa-leaf me-2 text-success mt-1"></i><span>Pioneer in Organic & Sustainable Farming</span></li>
+          <li class="d-flex align-items-start mb-1"><i class="fas fa-leaf me-2 text-success mt-1"></i><span>Pioneer in Sustainable Farming</span></li>
           <li class="d-flex align-items-start mb-1"><i class="fas fa-hand-holding-water me-2 text-success mt-1"></i><span>Advisor for Water Conservation Projects</span></li>
           <li class="d-flex align-items-start mb-1"><i class="fas fa-award me-2 text-success mt-1"></i><span>Long-term vision of blending eco-living</span></li>
         </ul>
-  <div class="social-links mt-3 text-center mt-auto">
-          <a href="https://www.linkedin.com/in/appumaranur/" class="text-decoration-none mx-2" target="_blank" rel="noopener noreferrer">
+  <div class="social-links founder-social">
+          <a href="https://www.linkedin.com/in/appumaranur/" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-linkedin fa-lg text-primary"></i>
           </a>
-          <a href="https://www.instagram.com/appu_maranur?igsh=OWJjcHFlMWRvM204" class="text-decoration-none mx-2" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/appu_maranur?igsh=OWJjcHFlMWRvM204" class="text-decoration-none" target="_blank" rel="noopener noreferrer">
             <i class="fab fa-instagram fa-lg"></i>
           </a>
         </div>
